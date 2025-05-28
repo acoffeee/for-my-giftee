@@ -12,7 +12,7 @@
       }
       .whole-word-box {
         display: flex;
-        border: 3px dotted grey;
+        /*border: 3px dotted grey;*/
         gap: 3%;
         flex-wrap: nowrap;
         align-items:center;
@@ -26,11 +26,13 @@
         min-width: 60px;
         aspect-ratio: 1;
         text-align: center;
+        font-size: 400%;
+        margin: 1%;
       }
     </style>
   </head>
   <body style="text-align: center">
-      <h1>A guessing game? HOW FUN</h1>
+      <h1>A guessing game? I might just be a creative genius.</h1>
       <input id="guess" class="text"></input>
       <button id="guesssubmit">submit guess</button>
       <div id="THE-BOX" class="big-box-div">
@@ -67,7 +69,11 @@
               }
               //works for now, has output for when a letter is in the name
             } else {
-              display += `<div class="neutral-letter-box" style="background-color: red;">${guess[i]}</div>`;
+                if (i < guess.length){
+                  display += `<div class="neutral-letter-box" style="background-color: red;">${guess[i]}</div>`;
+            } else{
+              display += `<div class="neutral-letter-box" style="background-color: red;"> </div>`;
+            }
               //works to check if letter not in string, dies if string not right size
             }
           };
