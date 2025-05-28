@@ -1,10 +1,31 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>My First HTML Page</title>
-</head>
-<body>
-  <h1>Hello, World!</h1>
-  <p>This is my first HTML page.</p>
-</body>
+  <head>
+    <title>Hello World!</title>
+  </head>
+  <body>
+      <h1>A guessing game? HOW FUN</h1>
+      <input id="guess" class="text"></input>
+      <button id="guesssubmit">submit guess</button>
+      <p id="in"> text</p>
+      <p id="not_in"></p>
+      <script>
+        document.getElementById("guesssubmit").addEventListener("click", guessed);
+        const word = "domekano";
+        const word_letters = ["d","o","m","e","k","a","n","o"];
+        //ok so i need to have a div that holds all of the guesses, one that will hold a line of boxes, and the boxes
+        function guessed() {
+          const guess = document.getElementById('guess').value;
+          for (let i = 0; i<word.length;i++) {
+            if (word.includes(guess[i])) {
+              document.getElementById('in').innerHTML += `<br>the letter: ${guess[i]} is in the string`
+              //works for now, has output for when a letter is in the name
+            } else {
+              document.getElementById("not_in").innerHTML += `<br>These are not in: ${guess[i]}`;
+              //works to check if letter not in string, dies if string not right size
+            }
+          };
+        };
+      </script>
+  </body>
 </html>
