@@ -2,13 +2,30 @@
 <html>
   <head>
     <title>Hello World!</title>
+    <style>
+      .big-box-div {
+        background-color: light-grey;
+        margin-left: 10%;
+        margin-right: 10%;
+        margin-top: 5%;
+      }
+      .whole-word-box {
+        background-color: white;
+        margin-bottom: 2px;
+        margin-top: 2px;
+        margin-left: 1px;
+        margin-right: 1px;
+      }
+    </style>
   </head>
   <body>
       <h1>A guessing game? HOW FUN</h1>
       <input id="guess" class="text"></input>
       <button id="guesssubmit">submit guess</button>
+      <div class="big-box-div">
       <p id="in"> text</p>
       <p id="not_in"></p>
+      </div>
       <script>
         document.getElementById("guesssubmit").addEventListener("click", guessed);
         const word = "domekano";
