@@ -10,13 +10,14 @@
         margin-top: 5%;
       }
       .whole-word-box {
-        border: 1px dotted grey;
+        border: 3px dotted grey;
         margin-bottom: 2px;
         margin-top: 2px;
         margin-left: 1px;
         margin-right: 1px;
       }
       .neutral-letter-box {
+        display: inline-block;
         background-color: white;
         border: 1px solid grey;
         margin-right: 5px;
@@ -42,10 +43,10 @@
           let display = `<div class="whole-word-box">`;
           for (let i = 0; i<word.length;i++) {
             if (word.includes(guess[i])) {
-              display += `<div class="neutral-letter-box">the letter: ${guess[i]} is in the string </div>`
+              display += `<div class="neutral-letter-box" style="background-color: green;">in: ${guess[i]} </div>`
               //works for now, has output for when a letter is in the name
             } else {
-              display += `<div class="neutral-letter-box"> These are not in: ${guess[i]}</div>`;
+              display += `<div class="neutral-letter-box" style="background-color: red;"> out: ${guess[i]}</div>`;
               //works to check if letter not in string, dies if string not right size
             }
           };
