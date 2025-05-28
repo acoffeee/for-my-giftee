@@ -8,25 +8,24 @@
         margin-left: 10%;
         margin-right: 10%;
         margin-top: 5%;
+        align-items: center;
       }
       .whole-word-box {
+        display: flex;
         border: 3px dotted grey;
-        margin-bottom: 10px;
-        margin-top: 10px;
-        margin-left: 5%;
-        margin-right: 5%;
-        
+        gap: 3%;
+        flex-wrap: nowrap;
+        align-items:center;
+        justify-content: center;
       }
       .neutral-letter-box {
-        display: inline-block;
+        flex: 1 1 60px;
         background-color: white;
         border: 1px solid grey;
-        margin-right: 5px;
-        margin-left: 5px;
-        margin-top:5px;
-        margin-bottom:5px;
-        width: 12.5%;
-        height: 55%;
+        max-width: 60px;
+        min-width: 60px;
+        aspect-ratio: 1;
+        text-align: center;
       }
     </style>
   </head>
