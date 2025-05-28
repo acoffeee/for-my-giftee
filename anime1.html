@@ -44,7 +44,11 @@
           let guess = document.getElementById("guess").value;
           let livedisplay=`<div class="whole-word-box">`;
            for (let i = 0; i<word.length;i++) {
-              livedisplay += `<div class="neutral-letter-box" style="background-color: white;">${guess[i]} </div>`;
+             if (i >= guess.length) {
+              livedisplay += `<div class="neutral-letter-box" style="background-color: white;"> </div>`;
+             } else {
+              livedisplay += `<div class="neutral-letter-box" style="background-color: white;">${guess[i]}</div>`;
+             };
            };
            document.getElementById("live-typing").innerHTML = livedisplay + `</div>`;
         };
@@ -70,6 +74,7 @@
           display += `</div>`;
           document.getElementById("THE-BOX").innerHTML += display;
           document.getElementById("guess").value = "";
+          typelive();
         };
       </script>
   </body>
