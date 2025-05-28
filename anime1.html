@@ -4,17 +4,25 @@
     <title>Hello World!</title>
     <style>
       .big-box-div {
-        background-color: light-grey;
+        border: 1px solid black;
         margin-left: 10%;
         margin-right: 10%;
         margin-top: 5%;
       }
       .whole-word-box {
-        background-color: white;
+        border: 1px dotted grey;
         margin-bottom: 2px;
         margin-top: 2px;
         margin-left: 1px;
         margin-right: 1px;
+      }
+      .neutral-letter-box {
+        background-color: white;
+        border: 1px solid grey;
+        margin-right: 5px;
+        margin-left: 5px;
+        margin-top:5px;
+        margin-bottom:5px;
       }
     </style>
   </head>
@@ -22,9 +30,7 @@
       <h1>A guessing game? HOW FUN</h1>
       <input id="guess" class="text"></input>
       <button id="guesssubmit">submit guess</button>
-      <div class="big-box-div">
-      <p id="in"> text</p>
-      <p id="not_in"></p>
+      <div id="THE-BOX" class="big-box-div">
       </div>
       <script>
         document.getElementById("guesssubmit").addEventListener("click", guessed);
@@ -33,15 +39,18 @@
         //ok so i need to have a div that holds all of the guesses, one that will hold a line of boxes, and the boxes
         function guessed() {
           const guess = document.getElementById('guess').value;
+          let display = `<div class="whole-word-box">`;
           for (let i = 0; i<word.length;i++) {
             if (word.includes(guess[i])) {
-              document.getElementById('in').innerHTML += `<br>the letter: ${guess[i]} is in the string`
+              display += `<div class="neutral-letter-box">the letter: ${guess[i]} is in the string </div>`
               //works for now, has output for when a letter is in the name
             } else {
-              document.getElementById("not_in").innerHTML += `<br>These are not in: ${guess[i]}`;
+              display += `<div class="neutral-letter-box"> These are not in: ${guess[i]}</div>`;
               //works to check if letter not in string, dies if string not right size
             }
           };
+          display += `</div>`;
+          document.getElementById("THE-BOX").innerHTML += display;
         };
       </script>
   </body>
