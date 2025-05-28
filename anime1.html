@@ -35,10 +35,21 @@
       <button id="guesssubmit">submit guess</button>
       <div id="THE-BOX" class="big-box-div">
       </div>
+      <div id="live-typing" class="big-box-div">
+      </div>
       <script>
-        document.getElementById("guesssubmit").addEventListener("click", guessed);
         const word = "domekano";
-        const word_letters = ["d","o","m","e","k","a","n","o"];
+        document.getElementById('guess').addEventListener("input", typelive);
+        function typelive() {
+          let guess = document.getElementById("guess").value;
+          let livedisplay=`<div class="whole-word-box">`;
+           for (let i = 0; i<word.length;i++) {
+              livedisplay += `<div class="neutral-letter-box" style="background-color: white;">${guess[i]} </div>`;
+           };
+           document.getElementById("live-typing").innerHTML = livedisplay + `</div>`;
+        };
+
+        document.getElementById("guesssubmit").addEventListener("click", guessed);
         //ok so i need to have a div that holds all of the guesses, one that will hold a line of boxes, and the boxes
         function guessed() {
           const guess = document.getElementById('guess').value;
@@ -58,6 +69,7 @@
           };
           display += `</div>`;
           document.getElementById("THE-BOX").innerHTML += display;
+          document.getElementById("guess").value = "";
         };
       </script>
   </body>
