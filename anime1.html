@@ -11,7 +11,7 @@
         margin-top: 5%;
         align-items: center;
         overflow: hidden;
-        transition: opacity 10s ease;
+        transition: opacity 4s ease;
       }
       .whole-word-box {
         display: flex;
@@ -97,7 +97,7 @@
         box.remove(); // Remove from DOM after fade
       }, { once: true });
       document.getElementById("live-typing").remove();
-      document.getElementById("secretdiv").innerHTML = '<button onclick="window.location.href=\'https://www.geeksforgeeks.org/html/how-to-embed-video-in-iframe-in-html\'">Go</button>';
+      document.getElementById("secretdiv").innerHTML = '<button style="font-size: 24px; padding: 15px 30px; cursor: pointer; transition: 5s ease opacity; opacity = 1" onclick="window.location.href=\'https://example.com\'">Go to Example</button>';
         } else{
           typelive();
         }
