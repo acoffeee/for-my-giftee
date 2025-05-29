@@ -45,6 +45,9 @@
       </div>
       <div id="live-typing" class="big-box-div">
       </div>
+      <div id="secretdiv"></div>
+      
+      
       <script>
         const word = "domekano";
         document.getElementById('guess').addEventListener("input", typelive);
@@ -94,6 +97,7 @@
         box.remove(); // Remove from DOM after fade
       }, { once: true });
       document.getElementById("live-typing").remove();
+      document.getElementById("secretdiv").innerHTML = '<button onclick="window.location.href=\'https://www.geeksforgeeks.org/html/how-to-embed-video-in-iframe-in-html\'">Go</button>';
         } else{
           typelive();
         }
