@@ -1,9 +1,40 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
   <head>
-    <title>My Site</title>
+    <style>
+    .picture {
+      height: auto;
+      width: 20%;
+      aspect-ratio: 1;
+      background-size: 100% 100%;
+    background-image: url("https://assets.onecompiler.app/43k5rvzj8/43k4stjuv/tmp-18swLBp82iLZdL-removebg-preview.png");
+    }
+    </style>
   </head>
   <body>
-    Hello, world!
+    <div style="margin: auto; width: 50%; text-align: center">
+      <h1> Balls of fate</h1>
+    </div>
+    <div id="here" style="margin: auto; width: 50%; text-align: center">
+      <h1> the results will show up here!</h1>
+    </div>
+    <div style="display: flex; align-items: center;justify-content: center;"><button id="manga1" class="picture" style="border: none; background-color: transparent"></button> <button id="manga2" class="picture" style="border: none; background-color: transparent"></button><button id="manga3" class="picture" style="border: none; background-color: transparent"></button></div>
+    
+    <script>
+      document.getElementById("manga1").addEventListener("click", domekano);
+      function domekano() {
+        document.getElementById("here").innerHTML = `<img src="https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx85802-lh7gZHgQmliE.png" alt="domekano" width=auto height=auto'><br><a href="https://anilist.co/manga/85802/Domestic-na-Kanojo/">Domekano</a></div>`
+      }
+      
+      document.getElementById("manga2").addEventListener("click", Marriedbutnotlovers);
+      function Marriedbutnotlovers() {
+        document.getElementById("here").innerHTML = `<img src="https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/nx105011-DxP8LvUSfRiJ.jpg" alt="Marriedbutnotlovers" width=auto height=auto'><br><a href="https://anilist.co/manga/105011/Fuufu-Ijou-Koibito-Miman/">Fuufu Ijou, Koibito Miman</a></div>`
+      }
+      
+      document.getElementById("manga3").addEventListener("click", cutedungeon);
+      function cutedungeon() {
+        document.getElementById("here").innerHTML = `<img src="https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/b149323-HnylqUxibojw.jpg" alt="cutedungeonromancebait" width=auto height=auto'><br><a href="https://anilist.co/manga/149323/Dungeon-no-Osananajimi/">Dungeon no Osananajimi</a></div>`
+      }
+    </script>
   </body>
 </html>
