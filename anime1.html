@@ -1,40 +1,109 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
   <head>
+    <title>Hello World!</title>
     <style>
-    .picture {
-      height: auto;
-      width: 20%;
-      aspect-ratio: 1;
-      background-size: 100% 100%;
-    background-image: url("https://assets.onecompiler.app/43k5rvzj8/43k4stjuv/tmp-18swLBp82iLZdL-removebg-preview.png");
-    }
+      .big-box-div {
+        position: relative;
+        border: 1px solid black;
+        margin-left: 10%;
+        margin-right: 10%;
+        margin-top: 5%;
+        align-items: center;
+        overflow: hidden;
+        transition: opacity 4s ease;
+      }
+      .whole-word-box {
+        display: flex;
+        /*border: 3px dotted grey;*/
+        gap: 3%;
+        flex-wrap: nowrap;
+        align-items:center;
+        justify-content: center;
+      }
+      .fade-out{
+        opacity:0;
+      }
+      .neutral-letter-box {
+        flex: 1 1 60px;
+        background-color: white;
+        border: 1px solid grey;
+        max-width: 60px;
+        min-width: 60px;
+        aspect-ratio: 1;
+        text-align: center;
+        font-size: 400%;
+        margin: 1%;
+      }
     </style>
   </head>
-  <body>
-    <div style="margin: auto; width: 50%; text-align: center">
-      <h1> Balls of fate</h1>
-    </div>
-    <div id="here" style="margin: auto; width: 50%; text-align: center">
-      <h1> the results will show up here!</h1>
-    </div>
-    <div style="display: flex; align-items: center;justify-content: center;"><button id="manga1" class="picture" style="border: none; background-color: transparent"></button> <button id="manga2" class="picture" style="border: none; background-color: transparent"></button><button id="manga3" class="picture" style="border: none; background-color: transparent"></button></div>
-    
-    <script>
-      document.getElementById("manga1").addEventListener("click", domekano);
-      function domekano() {
-        document.getElementById("here").innerHTML = `<img src="https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx85802-lh7gZHgQmliE.png" alt="domekano" width=auto height=auto'><br><a href="https://anilist.co/manga/85802/Domestic-na-Kanojo/">Domekano</a></div>`
-      }
+  <body style="text-align: center">
+      <h1>A guessing game? I might just be a creative genius.</h1>
+      <input id="guess" class="text"></input>
+      <button id="guesssubmit">submit guess</button>
+      <div id="THE-BOX" class="big-box-div">
+      </div>
+      <div id="live-typing" class="big-box-div">
+      </div>
+      <div id="secretdiv"></div>
+      <div id="secredivnumber2lmao"></div>
       
-      document.getElementById("manga2").addEventListener("click", Marriedbutnotlovers);
-      function Marriedbutnotlovers() {
-        document.getElementById("here").innerHTML = `<img src="https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/nx105011-DxP8LvUSfRiJ.jpg" alt="Marriedbutnotlovers" width=auto height=auto'><br><a href="https://anilist.co/manga/105011/Fuufu-Ijou-Koibito-Miman/">Fuufu Ijou, Koibito Miman</a></div>`
-      }
-      
-      document.getElementById("manga3").addEventListener("click", cutedungeon);
-      function cutedungeon() {
-        document.getElementById("here").innerHTML = `<img src="https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/b149323-HnylqUxibojw.jpg" alt="cutedungeonromancebait" width=auto height=auto'><br><a href="https://anilist.co/manga/149323/Dungeon-no-Osananajimi/">Dungeon no Osananajimi</a></div>`
-      }
-    </script>
+      <script>
+        const word = "domekano";
+        document.getElementById('guess').addEventListener("input", typelive);
+        function typelive() {
+          let guess = document.getElementById("guess").value;
+          let livedisplay=`<div class="whole-word-box">`;
+           for (let i = 0; i<word.length;i++) {
+             if (i >= guess.length) {
+              livedisplay += `<div class="neutral-letter-box" style="background-color: white;"> </div>`;
+             } else {
+              livedisplay += `<div class="neutral-letter-box" style="background-color: white;">${guess[i]}</div>`;
+             };
+           };
+           document.getElementById("live-typing").innerHTML = livedisplay + `</div>`;
+        };
+
+        document.getElementById("guesssubmit").addEventListener("click", guessed);
+        //ok so i need to have a div that holds all of the guesses, one that will hold a line of boxes, and the boxes
+        function guessed() {
+          const guess = document.getElementById('guess').value.toLowerCase();
+          let display = `<div class="whole-word-box">`;
+          for (let i = 0; i<word.length;i++) {
+            if (word.includes(guess[i])) {
+              if (guess[i] == word[i]){
+                display += `<div class="neutral-letter-box" style="background-color: green;">${guess[i]} </div>`;
+              } else {
+                display += `<div class="neutral-letter-box" style="background-color: yellow;">${guess[i]} </div>`;
+              }
+              //works for now, has output for when a letter is in the name
+            } else {
+                if (i < guess.length){
+                  display += `<div class="neutral-letter-box" style="background-color: red;">${guess[i]}</div>`;
+            } else{
+              display += `<div class="neutral-letter-box" style="background-color: red;"> </div>`;
+            }
+              //works to check if letter not in string, dies if string not right size
+            }
+          };
+          display += `</div>`;
+          document.getElementById("THE-BOX").innerHTML += display;
+          document.getElementById("guess").value = "";
+        if (guess === word) {
+          const box = document.getElementById('THE-BOX');
+      box.classList.add('fade-out'); // Start fading out
+
+      box.addEventListener('transitionend', () => {
+        box.remove(); // Remove from DOM after fade
+      }, { once: true });
+      document.getElementById("live-typing").remove();
+      document.getElementById("secretdiv").innerHTML = '<button style="font-size: 24px; padding: 15px 30px; cursor: pointer; transition: 5s ease opacity; opacity = 1" onclick="window.location.href=\'https://for-my-giftee.vercel.app/seal-thou-fate.html\'">Go to Example</button>';
+      document.getElementById("secredivnumber2lmao").innerHTML = '<video width="640" height="360" autoplay>  <source src="https://for-my-giftee.vercel.app/movie.mp4" type="video/mp4"> Your browser does not support the video tag.</video>'
+        } else{
+          typelive();
+        }
+        };
+       
+      </script>
   </body>
 </html>
