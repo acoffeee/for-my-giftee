@@ -4,11 +4,14 @@
     <title>Hello World!</title>
     <style>
       .big-box-div {
+        position: relative;
         border: 1px solid black;
         margin-left: 10%;
         margin-right: 10%;
         margin-top: 5%;
         align-items: center;
+        overflow: hidden;
+        transition: opacity 10s ease;
       }
       .whole-word-box {
         display: flex;
@@ -17,6 +20,9 @@
         flex-wrap: nowrap;
         align-items:center;
         justify-content: center;
+      }
+      .fade-out{
+        opacity:0;
       }
       .neutral-letter-box {
         flex: 1 1 60px;
@@ -58,7 +64,7 @@
         document.getElementById("guesssubmit").addEventListener("click", guessed);
         //ok so i need to have a div that holds all of the guesses, one that will hold a line of boxes, and the boxes
         function guessed() {
-          const guess = document.getElementById('guess').value;
+          const guess = document.getElementById('guess').value.toLowerCase();
           let display = `<div class="whole-word-box">`;
           for (let i = 0; i<word.length;i++) {
             if (word.includes(guess[i])) {
@@ -80,8 +86,19 @@
           display += `</div>`;
           document.getElementById("THE-BOX").innerHTML += display;
           document.getElementById("guess").value = "";
+        if (guess === word) {
+          const box = document.getElementById('THE-BOX');
+      box.classList.add('fade-out'); // Start fading out
+
+      box.addEventListener('transitionend', () => {
+        box.remove(); // Remove from DOM after fade
+      }, { once: true });
+      document.getElementById("live-typing").remove();
+        } else{
           typelive();
+        }
         };
+       
       </script>
   </body>
 </html>
